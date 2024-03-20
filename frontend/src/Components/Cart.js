@@ -30,72 +30,70 @@ export default function Cart() {
   return (
     <div>
       <Navbar />
-      <Container
-        fluid
-        className="d-flex align-items-center justify-content-center"
-      >
-        <Row className="m-0">
-          <Col md={12} className="p-0">
-            {cryptoData && (
-              <>
-                <h1>{cryptoData.name}</h1>
-                <Row className="justify-content-center">
-                  <Col md={6}>
-                    <Card>
-                      <Card.Img
-                        variant="top"
-                        src={cryptoData.image.large}
-                        alt={cryptoData.name}
-                      />
-                      <Card.Body>
-                        <Card.Title>{cryptoData.name}</Card.Title>
-                        <Card.Text>
-                          <p>
-                            <b>Name</b>: {cryptoData.name}
-                          </p>
-                          <p>
-                            <b>Symbol</b>: {cryptoData.symbol}
-                          </p>
-                          <p>
-                            <b>Hashing Algorithm</b>:{" "}
-                            {cryptoData.hashing_algorithm}
-                          </p>
-                          <p>
-                            <b>Date of origin</b>: {cryptoData.genesis_date}
-                          </p>
-                          <p>
-                            <b>Link</b>:{" "}
-                            <a href={cryptoData.links.homepage[0]}>
-                              {cryptoData.links.homepage[0]}
-                            </a>
-                          </p>
-                          <p>
-                            <b>Country of origin</b>:{" "}
-                            {cryptoData.country_origin || "Not available"}
-                          </p>
-                          <p>
-                            <b>Current Price</b>: ₹{" "}
-                            {cryptoData.market_data.current_price.inr}
-                          </p>
-                          <p>
-                            <b>Highest in 24HR</b>: ₹{" "}
-                            {cryptoData.market_data.high_24h.inr}
-                          </p>
-                          <p>
-                            <b>Lowest in 24HR</b>: ₹{" "}
-                            {cryptoData.market_data.low_24h.inr}
-                          </p>
-                          <br />
-                          <button>Buy</button>
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </Row>
-              </>
-            )}
-          </Col>
-        </Row>
+      <Container fluid style={{ textAlign: "center" }}>
+        {cryptoData && (
+          <>
+            <h1>{cryptoData.name}</h1>
+
+            <Card
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                // width: "40%",
+              }}
+            >
+              <Card.Img
+                variant="top"
+                src={cryptoData.image.large}
+                alt={cryptoData.name}
+                style={{
+                  width: "15%",
+                }}
+              />
+              <Card.Body>
+                <Card.Title>{cryptoData.name}</Card.Title>
+                <Card.Text>
+                  <p>
+                    <b>Name</b>: {cryptoData.name}
+                  </p>
+                  <p>
+                    <b>Symbol</b>: {cryptoData.symbol}
+                  </p>
+                  <p>
+                    <b>Hashing Algorithm</b>: {cryptoData.hashing_algorithm}
+                  </p>
+                  <p>
+                    <b>Date of origin</b>: {cryptoData.genesis_date}
+                  </p>
+                  <p>
+                    <b>Link</b>:{" "}
+                    <a href={cryptoData.links.homepage[0]}>
+                      {cryptoData.links.homepage[0]}
+                    </a>
+                  </p>
+                  <p>
+                    <b>Country of origin</b>:{" "}
+                    {cryptoData.country_origin || "Not available"}
+                  </p>
+                  <p>
+                    <b>Current Price</b>: ₹{" "}
+                    {cryptoData.market_data.current_price.inr}
+                  </p>
+                  <p>
+                    <b>Highest in 24HR</b>: ₹{" "}
+                    {cryptoData.market_data.high_24h.inr}
+                  </p>
+                  <p>
+                    <b>Lowest in 24HR</b>: ₹{" "}
+                    {cryptoData.market_data.low_24h.inr}
+                  </p>
+                  <br />
+                  <button>Buy</button>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </>
+        )}
       </Container>
     </div>
   );
