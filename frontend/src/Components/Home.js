@@ -7,12 +7,12 @@ import Container from "react-bootstrap/Container";
 // import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 
-export default function Home(props) {
+export default function Home() {
   const [cryptoData, setCryptoData] = useState([]);
   const navigate = useNavigate();
 
   const onClickOnRow = (id) => {
-    navigate(`/cart?id=${id}`);
+    navigate(`/info?id=${id}`);
   };
 
   useEffect(() => {
@@ -65,15 +65,15 @@ export default function Home(props) {
                 </td>
                 <td>{crypto.name}</td>
                 <td>
-                  <b>₹ </b>
+                  <b>$ </b>
                   {crypto.current_price}
                 </td>
                 <td>
-                  <b>₹ </b>
+                  <b>$ </b>
                   {crypto.market_cap}
                 </td>
                 <td>
-                  <b>₹ </b>
+                  <b>$ </b>
                   {crypto.total_volume}
                 </td>
               </tr>

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { apiFetch } = require("../controllers/apiController");
+const { homePageApi } = require("../controllers/apiController");
 
-router.get("/home", apiFetch);
+router.get("/home", homePageApi);
 
 module.exports = router;

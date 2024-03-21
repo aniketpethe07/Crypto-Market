@@ -1,6 +1,6 @@
 const fetch = require("node-fetch"); // Import node-fetch module
 
-const apiFetch = async (req, res) => {
+const homePageApi = async (req, res) => {
   try {
     const response = await fetch(
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
@@ -14,4 +14,4 @@ const apiFetch = async (req, res) => {
   }
 };
 
-module.exports = { apiFetch }; // Export as an object
+module.exports = { homePageApi }; // Export as an object

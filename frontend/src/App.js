@@ -6,8 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Home from "./Components/Home";
-import Cart from "./Components/Cart";
+import Info from "./Components/Info";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Cart from "./Components/Cart";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/aboutus" element={<Navbar />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/info" element={<Info />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
