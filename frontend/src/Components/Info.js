@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function Info() {
   const [cryptoData, setCryptoData] = useState(null);
@@ -61,15 +62,6 @@ export default function Info() {
                     <p>Symbol: {cryptoData.symbol}</p>
                     <p>Hashing Algorithm: {cryptoData.hashing_algorithm}</p>
                     <p>Date of origin: {cryptoData.genesis_date}</p>
-                    {/* <p>
-                      Link:</>{" "}
-                      <a
-                        className="text-light text-decoration-none"
-                        href={cryptoData.links.homepage[0]}
-                      >
-                        {cryptoData.links.homepage[0]}
-                      </a>
-                    </p> */}
                     <p>
                       Country of origin:{" "}
                       {cryptoData.country_origin || "Not available"}
@@ -95,6 +87,7 @@ export default function Info() {
           </Card>
         )}
       </Container>
+      <Footer/>
     </div>
   );
 }

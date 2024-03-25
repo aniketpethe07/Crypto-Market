@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import Table from "react-bootstrap/Table";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
@@ -35,14 +36,25 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const footerRef = useRef(null);
+
+  const handleScrollToFooter = () => {
+    footerRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar scrollToFooter={handleScrollToFooter} />
       <Container>
-        <h1>Today's Cryptocurrency Prices</h1>
+        <h1 className="py-5">Today's Cryptocurrency Prices</h1>
         <Table striped bordered hover responsive>
           <thead>
-            <tr>
+            <tr
+              className="cursor-pointer "
+              style={{
+                backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)",
+              }}
+            >
               <th>Rank</th>
               <th>Image</th>
               <th>Name</th>
@@ -54,7 +66,7 @@ export default function Home() {
           <tbody>
             {cryptoData.map((crypto, index) => (
               <tr key={index} onClick={() => onClickOnRow(crypto.id)}>
-                <td>{crypto.market_cap_rank}</td>
+                <td className="cursor-pointer">{crypto.market_cap_rank}</td>
                 <td>
                   <Image
                     src={crypto.image}
@@ -81,6 +93,7 @@ export default function Home() {
           </tbody>
         </Table>
       </Container>
+      <Footer forwardedRef={footerRef} />
     </>
   );
 }

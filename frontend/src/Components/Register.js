@@ -5,8 +5,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -58,55 +56,60 @@ export default function Register() {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-center align-items-center">
-        <Col xs={12} md={6}>
-          <div>
-            <h1>CryptoMarket</h1>
-            <p>
-              Connect with CryptoMarket and get access upto 100+
-              Cryptocurrencies.
-            </p>
-          </div>
-          <Card className="justify-content-center">
-            <Card.Body>
-              <h1>Register</h1>
-              <Form>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control
-                    className="w-50"
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </Form.Group>
+    <Container
+      fluid
+      className="d-flex align-items-center justify-content-evenly vh-100"
+      style={{ backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)" }}
+    >
+      <div>
+        <h1>CryptoMarket</h1>
+        <p>
+          Connect with CryptoMarket and get access upto 100+ Cryptocurrencies.
+        </p>
+      </div>
+      <div className="">
+        <Card>
+          <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+            <h1 className="pb-4">Register</h1>
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Control
+                  className="pt-3"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <br />
+              <Form.Group controlId="formBasicPassword">
+                <Form.Control
+                  className="pt-3"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Control
-                    className="w-50"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </Form.Group>
-
+              <div className="d-flex justify-content-evenly pt-3">
                 <Button
-                  variant="primary"
+                  className="text-dark"
                   type="submit"
                   onClick={handleRegister}
                 >
                   Register
                 </Button>
                 <Link to="/login">
-                  <Button variant="secondary">Login</Button>
+                  <Button variant="secondary" className="text-dark">
+                    Login
+                  </Button>
                 </Link>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+              </div>
+            </Form>
+          </Card.Body>
+        </Card>
+      </div>
     </Container>
   );
 }
