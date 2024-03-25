@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "./Navbar";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
@@ -30,9 +30,15 @@ export default function Info() {
     fetchData();
   }, []);
 
+  const footerRef = useRef(null);
+
+  const handleScrollToFooter = () => {
+    footerRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div>
-      <Navbar />
+      <Navbar scrollToFooter={handleScrollToFooter} />
       <Container
         fluid
         className="d-flex justify-content-center align-items-center vh-100"
@@ -42,9 +48,10 @@ export default function Info() {
           <Card
             style={{
               width: "50rem",
-              backgroundColor: "#4895ef",
-              color: "white",
+              backgroundImage: "linear-gradient(60deg, #8e7dbe, #e0aaff)",
+              color: "black",
             }}
+            // className="text-center"
           >
             <h1 className="text-center">{cryptoData.name}</h1>
             <Row>
@@ -79,7 +86,7 @@ export default function Info() {
                   </Card.Text>
 
                   <Link to="/cart">
-                    <Button>Buy</Button>
+                    <Button style={{ color: "black" }}>Buy</Button>
                   </Link>
                 </Card.Body>
               </Col>
@@ -87,7 +94,7 @@ export default function Info() {
           </Card>
         )}
       </Container>
-      <Footer/>
+      <Footer forwardedRef={footerRef} />
     </div>
   );
 }

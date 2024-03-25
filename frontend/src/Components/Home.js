@@ -47,10 +47,10 @@ export default function Home() {
       <Navbar scrollToFooter={handleScrollToFooter} />
       <Container>
         <h1 className="py-5">Today's Cryptocurrency Prices</h1>
-        <Table striped bordered hover responsive>
-          <thead>
+        <Table bordered hover responsive>
+          <thead className="table-primary">
             <tr
-              className="cursor-pointer "
+              className="cursor-pointer"
               style={{
                 backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)",
               }}
@@ -65,9 +65,14 @@ export default function Home() {
           </thead>
           <tbody>
             {cryptoData.map((crypto, index) => (
-              <tr key={index} onClick={() => onClickOnRow(crypto.id)}>
-                <td className="cursor-pointer">{crypto.market_cap_rank}</td>
-                <td>
+              <tr>
+                <td>{crypto.market_cap_rank}</td>
+
+                <td
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                  onClick={() => onClickOnRow(crypto.id)}
+                >
                   <Image
                     src={crypto.image}
                     alt={crypto.name}
@@ -75,7 +80,13 @@ export default function Home() {
                     width={40}
                   />
                 </td>
-                <td>{crypto.name}</td>
+                <td
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                  onClick={() => onClickOnRow(crypto.id)}
+                >
+                  {crypto.name}
+                </td>
                 <td>
                   <b>$ </b>
                   {crypto.current_price}
