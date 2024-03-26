@@ -5,21 +5,24 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function Info() {
   const [cryptoData, setCryptoData] = useState(null);
 
+  const navigate = useNavigate();
+
+  const onClickOnRow = (id) => {
+    navigate(`/cart?id=${id}`);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url_string = window.location.href;
-        const url = new URL(url_string);
-        const id = url.searchParams.get("id");
-        const response = await fetch(
-          `https://api.coingecko.com/api/v3/coins/${id}`
-        );
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        const response = await fetch(`http://localhost:4000/info?id=${id}`);
         const data = await response.json();
         setCryptoData(data);
       } catch (error) {
@@ -75,19 +78,23 @@ export default function Info() {
                     </p>
                     <p>
                       Current Price: ₹{" "}
-                      {cryptoData.market_data.current_price.inr}
+                      {cryptoData.market_data.current_price.usd}
                     </p>
                     <p>
-                      Highest in 24HR: ₹ {cryptoData.market_data.high_24h.inr}
+                      Highest in 24HR: ₹ {cryptoData.market_data.high_24h.usd}
                     </p>
                     <p>
-                      Lowest in 24HR: ₹ {cryptoData.market_data.low_24h.inr}
+                      Lowest in 24HR: ₹ {cryptoData.market_data.low_24h.usd}
                     </p>
                   </Card.Text>
 
-                  <Link to="/cart">
-                    <Button style={{ color: "black" }}>Buy</Button>
-                  </Link>
+                  <Button
+                    key={cryptoData.id}
+                    onClick={() => onClickOnRow(cryptoData.id)}
+                    style={{ color: "black" }}
+                  >
+                    Buy
+                  </Button>
                 </Card.Body>
               </Col>
             </Row>

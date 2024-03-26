@@ -7,11 +7,23 @@ const homePageApi = async (req, res) => {
     );
     const data = await response.json();
     res.json(data);
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.error("Error fetching crypto data:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-module.exports = { homePageApi }; // Export as an object
+const infoPageApi = async (req, res) => {
+  try {
+    const id = req.query.id;
+    const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching crypto data:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+module.exports = { homePageApi, infoPageApi }; // Export as an object
