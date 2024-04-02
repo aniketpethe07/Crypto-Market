@@ -51,7 +51,8 @@ export default function Info() {
           <Card
             style={{
               width: "50rem",
-              backgroundImage: "linear-gradient(60deg, #8e7dbe, #e0aaff)",
+              backgroundImage:
+                "linear-gradient(60deg, var(--blue), var(--purple))",
               color: "black",
             }}
             // className="text-center"
@@ -87,15 +88,14 @@ export default function Info() {
                       Lowest in 24HR: ₹ {cryptoData.market_data.low_24h.usd}
                     </p>
                   </Card.Text>
-
-                  <Button
-                    key={cryptoData.id}
-                    onClick={() => onClickOnRow(cryptoData.id)}
-                    style={{ color: "black" }}
-                  >
-                    Buy
-                  </Button>
                 </Card.Body>
+                <Button
+                  key={cryptoData.id}
+                  onClick={() => onClickOnRow(cryptoData.id)}
+                  className="border btn-dark"
+                >
+                  Buy
+                </Button>
               </Col>
             </Row>
           </Card>

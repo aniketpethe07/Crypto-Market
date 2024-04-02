@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <Navbar
       style={{
-        backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)",
+        backgroundImage: "linear-gradient(60deg, var(--blue), var(--purple))",
       }}
     >
       <Navbar.Brand className="mx-auto">

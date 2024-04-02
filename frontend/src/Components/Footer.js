@@ -8,7 +8,7 @@ export default function Footer({ forwardedRef }) {
         fluid
         className="text-dark d-flex justify-content-between align-items-center"
         style={{
-          backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)",
+          backgroundImage: "linear-gradient(60deg, var(--blue), var(--purple))",
           padding: "20px", // Add padding to the footer container
         }}
       >

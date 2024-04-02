@@ -52,7 +52,8 @@ export default function Cart() {
           className=" align-items-center m-5 vh-100"
           style={{
             width: "50rem",
-            backgroundImage: "linear-gradient(60deg, #8e7dbe, #e0aaff)",
+            backgroundImage:
+              "linear-gradient(60deg, var(--blue), var(--purple))",
             color: "black",
           }}
         >

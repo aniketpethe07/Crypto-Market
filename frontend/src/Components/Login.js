@@ -58,10 +58,12 @@ export default function Login() {
 
   return (
     <Container
-    fluid
-    className="d-flex align-items-center justify-content-evenly vh-100"
-    style={{ backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)" }}
-  >
+      fluid
+      className="d-flex align-items-center justify-content-evenly vh-100"
+      style={{
+        backgroundImage: "linear-gradient(60deg, var(--blue), var(--purple))",
+      }}
+    >
       <div>
         <h1>CryptoMarket</h1>
         <p>
@@ -69,7 +71,12 @@ export default function Login() {
         </p>
       </div>
       <div>
-        <Card>
+        <Card
+          className="border"
+          style={{
+            backgroundImage: "linear-gradient(60deg, #f4f4f8, #33415c)",
+          }}
+        >
           <Card.Body className="d-flex flex-column justify-content-center align-items-center">
             <h1 className="pb-4">Login</h1>
             <Form>
@@ -95,15 +102,15 @@ export default function Login() {
 
               <div className="d-flex justify-content-evenly pt-3">
                 <Button
+                  className="border btn-dark"
                   variant="primary"
                   type="submit"
-                  className="text-dark"
                   onClick={handleLogIn}
                 >
                   Login
                 </Button>
                 <Link to="/register">
-                  <Button variant="secondary" className="text-dark">
+                  <Button variant="secondary" className="border btn-dark">
                     Register
                   </Button>
                 </Link>

@@ -59,7 +59,9 @@ export default function Register() {
     <Container
       fluid
       className="d-flex align-items-center justify-content-evenly vh-100"
-      style={{ backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)" }}
+      style={{
+        backgroundImage: "linear-gradient(60deg, var(--blue), var(--purple))",
+      }}
     >
       <div>
         <h1>CryptoMarket</h1>
@@ -68,7 +70,12 @@ export default function Register() {
         </p>
       </div>
       <div className="">
-        <Card>
+        <Card
+          className="border"
+          style={{
+            backgroundImage: "linear-gradient(60deg, #f4f4f8, #33415c)",
+          }}
+        >
           <Card.Body className="d-flex flex-column justify-content-center align-items-center">
             <h1 className="pb-4">Register</h1>
             <Form>
@@ -94,14 +101,14 @@ export default function Register() {
 
               <div className="d-flex justify-content-evenly pt-3">
                 <Button
-                  className="text-dark"
+                  className="border btn-dark"
                   type="submit"
                   onClick={handleRegister}
                 >
                   Register
                 </Button>
                 <Link to="/login">
-                  <Button variant="secondary" className="text-dark">
+                  <Button variant="secondary" className="border btn-dark">
                     Login
                   </Button>
                 </Link>

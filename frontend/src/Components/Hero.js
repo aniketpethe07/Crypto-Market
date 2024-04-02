@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export default function Hero() {
-  
   return (
     <Container fluid className="p-0">
       <Row className="m-0 position-relative">
@@ -20,10 +19,9 @@ export default function Hero() {
         </Col>
         <Col md={6} className={`text-white text-center`}>
           <div className="position-absolute top-50 start-50 translate-middle">
-            
-              <h2>BE READY TO FLY WITH</h2>
-              <h1>CryptoMarket</h1>
-            
+            <h2>BE READY TO FLY WITH</h2>
+            <h1>CryptoMarket</h1>
+
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat,
               eveniet eligendi repudiandae deleniti necessitatibus nemo
@@ -31,7 +29,8 @@ export default function Hero() {
             <Link to="/register">
               <Button
                 style={{
-                  backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)",
+                  backgroundImage:
+                    "linear-gradient(60deg, var(--blue), var(--purple))",
                   color: "black",
                   transition: "transform 0.3s",
                   transform: "scale(1)",

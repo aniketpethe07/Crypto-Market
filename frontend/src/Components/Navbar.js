@@ -8,7 +8,7 @@ export default function CustomNavbar({ scrollToFooter }) {
     <Navbar
       className="d-flex justify-content-between"
       style={{
-        backgroundImage: "linear-gradient(60deg, #9d4edd, #c8b6ff)",
+        backgroundImage: "linear-gradient(60deg, var(--blue), var(--purple))",
       }}
     >
       <Navbar.Brand

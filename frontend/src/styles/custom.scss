@@ -1,6 +1,7 @@
 // Import Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-// Custom color variable
-// $purple-500: #6610f2; 
-
+:root {
+    --blue: #00b4d8;
+    --purple: #e0aaff;
+  }
