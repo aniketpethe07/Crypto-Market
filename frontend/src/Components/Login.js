@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
+import axios from "axios"; // Import Axios
 
 export default function Login() {
   const navigate = useNavigate();
@@ -11,10 +12,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogIn = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault(); // Prevent the form submission
-
-      // Add your validation logic here
       if (!validateEmail(email)) {
         alert("Please enter a valid email address.");
         return;
@@ -25,15 +24,12 @@ export default function Login() {
         return;
       }
 
-      const response = await fetch("http://localhost:4000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+      const response = await axios.post("http://localhost:4000/login", {
+        email,
+        password,
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         navigate("/home");
       } else {
         alert("Invalid email or password.");
@@ -43,16 +39,12 @@ export default function Login() {
     }
   };
 
-  // Validation functions
   const validateEmail = (email) => {
-    // Use a regular expression or other validation logic
-    // Example regular expression for a basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const validatePassword = (password) => {
-    // Add your password validation logic here
     return password.length >= 8;
   };
 
@@ -79,7 +71,7 @@ export default function Login() {
         >
           <Card.Body className="d-flex flex-column justify-content-center align-items-center">
             <h1 className="pb-4">Login</h1>
-            <Form>
+            <Form onSubmit={handleLogIn}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
                   className="pt-3"
@@ -105,7 +97,6 @@ export default function Login() {
                   className="border btn-dark"
                   variant="primary"
                   type="submit"
-                  onClick={handleLogIn}
                 >
                   Login
                 </Button>

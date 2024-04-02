@@ -5,47 +5,44 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
+import axios from "axios"; // Import Axios
 
 export default function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleRegister = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault(); // Prevent the form submission
-
-      // Add your validation logic here
       if (!validateEmail(email)) {
-        alert("Please enter a valid email address.");
+        setError("Please enter a valid email address.");
         return;
       }
 
       if (!validatePassword(password)) {
-        alert("Password should be at least 8 characters long.");
+        setError("Password should be at least 8 characters long.");
         return;
       }
 
-      const response = await fetch("http://localhost:4000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+      const response = await axios.post("http://localhost:4000/register", {
+        email,
+        password,
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         alert("Account Created Successfully!");
         navigate("/login");
       } else {
-        console.log(response);
+        setError(response.data.error || "Registration failed");
       }
     } catch (error) {
       console.error("Error during registration:", error);
+      setError("Registration failed");
     }
   };
 
-  // Validation functions
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -66,7 +63,7 @@ export default function Register() {
       <div>
         <h1>CryptoMarket</h1>
         <p>
-          Connect with CryptoMarket and get access upto 100+ Cryptocurrencies.
+          Connect with CryptoMarket and get access up to 100+ Cryptocurrencies.
         </p>
       </div>
       <div className="">
@@ -78,7 +75,7 @@ export default function Register() {
         >
           <Card.Body className="d-flex flex-column justify-content-center align-items-center">
             <h1 className="pb-4">Register</h1>
-            <Form>
+            <Form onSubmit={handleRegister}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
                   className="pt-3"
@@ -98,13 +95,9 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
-
+              {error && <p className="text-danger">{error}</p>}
               <div className="d-flex justify-content-evenly pt-3">
-                <Button
-                  className="border btn-dark"
-                  type="submit"
-                  onClick={handleRegister}
-                >
+                <Button className="border btn-dark" type="submit">
                   Register
                 </Button>
                 <Link to="/login">
