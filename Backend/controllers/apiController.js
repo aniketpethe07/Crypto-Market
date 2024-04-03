@@ -3,7 +3,7 @@ const fetch = require("node-fetch"); // Import node-fetch module
 const homePageApi = async (req, res) => {
   try {
     const response = await fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
     );
     const data = await response.json();
     res.json(data);
@@ -17,7 +17,9 @@ const homePageApi = async (req, res) => {
 const infoPageApi = async (req, res) => {
   try {
     const id = req.query.id;
-    const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${id}`
+    );
     const data = await response.json();
     res.json(data);
   } catch (error) {

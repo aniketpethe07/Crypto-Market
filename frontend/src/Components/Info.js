@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import Axios
 
 export default function Info() {
   const [cryptoData, setCryptoData] = useState(null);
@@ -22,9 +23,8 @@ export default function Info() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
-        const response = await fetch(`http://localhost:4000/info?id=${id}`);
-        const data = await response.json();
-        setCryptoData(data);
+        const response = await axios.get(`http://localhost:4000/info?id=${id}`);
+        setCryptoData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -42,20 +42,17 @@ export default function Info() {
   return (
     <div>
       <Navbar scrollToFooter={handleScrollToFooter} />
-      <Container
-        fluid
-        className="d-flex justify-content-center align-items-center vh-100"
-        // style={{  }}
-      >
+      <Container fluid className="d-flex justify-content-center my-5 py-">
         {cryptoData && (
           <Card
+            className=" py-4"
             style={{
-              width: "50rem",
+              width: "100%", // Adjust width to fit the container
+              maxWidth: "50rem", // Limit maximum width to avoid excessive width on larger screens
               backgroundImage:
                 "linear-gradient(60deg, var(--blue), var(--purple))",
               color: "black",
             }}
-            // className="text-center"
           >
             <h1 className="text-center">{cryptoData.name}</h1>
             <Row>
@@ -64,7 +61,11 @@ export default function Info() {
                   variant="top"
                   src={cryptoData.image.large}
                   alt={cryptoData.name}
-                  style={{ width: "50%", paddingLeft: "40px" }}
+                  style={{
+                    width: "50%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }} // Center the image
                 />
               </Col>
               <Col>
@@ -89,15 +90,19 @@ export default function Info() {
                     </p>
                   </Card.Text>
                 </Card.Body>
-                <Button
-                  key={cryptoData.id}
-                  onClick={() => onClickOnRow(cryptoData.id)}
-                  className="border btn-dark"
-                >
-                  Buy
-                </Button>
               </Col>
             </Row>
+            <div className="d-flex justify-content-center">
+              <Button
+                variant="dark"
+                className=""
+                key={cryptoData.id}
+                onClick={() => onClickOnRow(cryptoData.id)}
+                style={{ width: "25%" }}
+              >
+                Dark
+              </Button>
+            </div>
           </Card>
         )}
       </Container>

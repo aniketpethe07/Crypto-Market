@@ -6,10 +6,10 @@ export default function Footer({ forwardedRef }) {
     <footer ref={forwardedRef}>
       <Container
         fluid
-        className="text-dark d-flex justify-content-between align-items-center"
+        className="text-dark d-flex justify-content-between align-items-center p-4"
         style={{
           backgroundImage: "linear-gradient(60deg, var(--blue), var(--purple))",
-          padding: "20px", // Add padding to the footer container
+          // padding: "20px", // Add padding to the footer container
         }}
       >
         <div>
@@ -20,8 +20,6 @@ export default function Footer({ forwardedRef }) {
           </p>
         </div>
         <div style={{ marginLeft: "20px" }}>
-          {" "}
-          {/* Add margin-left */}
           <h1>Contact CryptoMarket</h1>
           <p>Phone: 1234567890</p>
           <p>Address: XYZ</p>

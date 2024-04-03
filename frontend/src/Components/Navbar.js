@@ -9,12 +9,15 @@ export default function CustomNavbar({ scrollToFooter }) {
       className="d-flex justify-content-between"
       style={{
         backgroundImage: "linear-gradient(60deg, var(--blue), var(--purple))",
+        width: "100%",
+        overflowX: "hidden", // Hide horizontal overflow
+
       }}
     >
       <Navbar.Brand
         as={Link}
         to="/home"
-        className="px-4 "
+        className="px-4"
         style={{ color: "black" }}
       >
         <h3>Crypto Market</h3>

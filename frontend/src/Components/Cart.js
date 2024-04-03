@@ -44,12 +44,9 @@ export default function Cart() {
   return (
     <div>
       <Navbar scrollToFooter={handleScrollToFooter} />
-      <Container
-        fluid
-        className="d-flex justify-content-center align-items-center "
-      >
+      <Container fluid className="d-flex justify-content-center">
         <Card
-          className=" align-items-center m-5 vh-100"
+          className=" align-items-center m-5"
           style={{
             width: "50rem",
             backgroundImage:
@@ -62,7 +59,8 @@ export default function Cart() {
               <h1 className="text-center">{cryptoData.name}</h1>
               <p>
                 {" "}
-                <b>$</b> {cryptoData.market_data.current_price.usd}
+                <b>Current Price: </b>${" "}
+                {cryptoData.market_data.current_price.usd}
               </p>
               <div className="mb-3">
                 <input

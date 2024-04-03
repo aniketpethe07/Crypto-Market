@@ -4,9 +4,8 @@ import Footer from "./Footer";
 import Table from "react-bootstrap/Table";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Home() {
   const [cryptoData, setCryptoData] = useState([]);
@@ -19,8 +18,8 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/home");
-        const data = await response.json();
+        const response = await axios.get("http://localhost:4000/home"); // Use axios.get
+        const data = response.data;
 
         // Ensure that data is an array before setting the state
         if (Array.isArray(data)) {
