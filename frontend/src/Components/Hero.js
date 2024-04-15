@@ -32,14 +32,6 @@ export default function Hero() {
                   backgroundImage:
                     "linear-gradient(60deg, var(--blue), var(--purple))",
                   color: "black",
-                  transition: "transform 0.3s",
-                  transform: "scale(1)",
-                }}
-                onMouseEnter={(event) => {
-                  event.target.style.transform = "scale(1.1)";
-                }}
-                onMouseLeave={(event) => {
-                  event.target.style.transform = "translate(0px, 0px)";
                 }}
               >
                 Join Us
