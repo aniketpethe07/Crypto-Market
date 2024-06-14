@@ -9,6 +9,7 @@ import axios from "axios";
 
 export default function Home() {
   const [cryptoData, setCryptoData] = useState([]);
+  const [email, setEmail] = useState();
   const navigate = useNavigate();
 
   const onClickOnRow = (id) => {
@@ -18,15 +19,16 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/home"); // Use axios.get
-        const data = response.data;
+        const response = await axios.get("http://localhost:4000/home");
+        const { data, email } = response.data;
 
-        // Ensure that data is an array before setting the state
         if (Array.isArray(data)) {
           setCryptoData(data);
         } else {
           console.error("Invalid data format received:", data);
         }
+
+        setEmail(email);
       } catch (error) {
         console.error("Error fetching crypto data:", error.message);
       }
@@ -43,9 +45,9 @@ export default function Home() {
 
   return (
     <>
-      <Navbar scrollToFooter={handleScrollToFooter} />
+      <Navbar scrollToFooter={handleScrollToFooter} email={email}/>
       <Container>
-        <h1 className="py-5">Today's Cryptocurrency Prices</h1>
+        <h1 className="py-5">Today's Cryptocurrency Prices: </h1>
         <Table bordered hover responsive>
           <thead className="table-primary">
             <tr
@@ -63,13 +65,11 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {cryptoData.map((crypto, index) => (
-              <tr>
+            {cryptoData.map((crypto) => (
+              <tr key={crypto.id}>
                 <td>{crypto.market_cap_rank}</td>
-
                 <td
                   style={{ cursor: "pointer" }}
-                  key={index}
                   onClick={() => onClickOnRow(crypto.id)}
                 >
                   <Image
@@ -81,22 +81,18 @@ export default function Home() {
                 </td>
                 <td
                   style={{ cursor: "pointer" }}
-                  key={index}
                   onClick={() => onClickOnRow(crypto.id)}
                 >
                   {crypto.name}
                 </td>
                 <td>
-                  <b>$ </b>
-                  {crypto.current_price}
+                  <b>$</b> {crypto.current_price}
                 </td>
                 <td>
-                  <b>$ </b>
-                  {crypto.market_cap}
+                  <b>$</b> {crypto.market_cap}
                 </td>
                 <td>
-                  <b>$ </b>
-                  {crypto.total_volume}
+                  <b>$</b> {crypto.total_volume}
                 </td>
               </tr>
             ))}

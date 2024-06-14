@@ -51,10 +51,44 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: "Password doesn't match" });
     }
 
-    res.json({ message: `Welcome! ${email}` });
+    req.session.email = user.email;
+    res.json({ message: `Welcome! ${req.session.email}` });
+    // console.log({ message: `Welcome! ${req.session.email}` });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = { registerUser, loginUser };
+const homePageApi = async (req, res) => {
+  console.log("Session email in homePageApi:", req.session.email);
+  try {
+    const response = await fetch(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
+    );
+    const data = await response.json();
+    res.json({data, email: req.session.email});
+    // console.log({message: `Welcome! ${req.session.email}`});
+    // console.log(data);
+  } catch (error) {
+    console.error("Error fetching crypto data:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const infoPageApi = async (req, res) => {
+  try {
+    const id = req.query.id;
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${id}`
+    );
+    const data = await response.json();
+    // res.json(data);
+    res.json({data, email: req.session.email});
+    console.log({message: `Welcome! ${req.session.email}`});
+  } catch (error) {
+    console.error("Error fetching crypto data:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+module.exports = { registerUser, loginUser, homePageApi, infoPageApi };

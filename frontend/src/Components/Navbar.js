@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
-export default function CustomNavbar({ scrollToFooter }) {
+export default function CustomNavbar({ scrollToFooter, email }) {
   return (
     <Navbar
       className="d-flex justify-content-between"
@@ -23,6 +23,10 @@ export default function CustomNavbar({ scrollToFooter }) {
         <h3>Crypto Market</h3>
       </Navbar.Brand>
       <Nav className="px-4">
+        
+        <Nav.Link as={Link} to="/home" style={{ color: "black" }}>
+          Welcome {email}!
+        </Nav.Link>
         <Nav.Link as={Link} to="/home" style={{ color: "black" }}>
           Home
         </Nav.Link>

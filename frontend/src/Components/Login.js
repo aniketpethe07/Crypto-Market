@@ -1,17 +1,19 @@
-import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
-import axios from "axios"; // Import Axios
-import { loginContext } from "../Context/context";
+import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import { loginContext } from '../Context/context';
+
+axios.defaults.withCredentials = true; // Ensure credentials are sent with each request
 
 export default function Login() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setLoggedIn } = useContext(loginContext);
+  const navigate = useNavigate();
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        setLoggedIn(true)
+        setLoggedIn(true);
         navigate("/home");
       } else {
         alert("Invalid email or password.");
@@ -62,7 +64,7 @@ export default function Login() {
       <div>
         <h1>CryptoMarket</h1>
         <p>
-          Connect with CryptoMarket and get access upto 100+ Cryptocurrencies.
+          Connect with CryptoMarket and get access up to 100+ Cryptocurrencies.
         </p>
       </div>
       <div>
